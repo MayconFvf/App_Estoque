@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Button from '../components/Button'
 import Table from '../components/Table'
+import { listCustomers } from '../services/customerService'
 import { getMonthlySalesReport } from '../services/reportService'
 
 const monthOptions = [
@@ -31,6 +32,7 @@ function getDefaultReportFilters() {
   return {
     month: String(currentDate.getMonth() + 1),
     year: String(currentDate.getFullYear()),
+    customerId: '',
     sortBy: 'quantity',
   }
 }
@@ -40,7 +42,9 @@ function RelatorioMensal() {
   const currentYear = new Date().getFullYear()
   const [month, setMonth] = useState(defaultFilters.month)
   const [year, setYear] = useState(defaultFilters.year)
+  const [customerId, setCustomerId] = useState(defaultFilters.customerId)
   const [sortBy, setSortBy] = useState(defaultFilters.sortBy)
+  const [customers, setCustomers] = useState([])
   const [report, setReport] = useState({
     rows: [],
     totals: {
@@ -54,7 +58,7 @@ function RelatorioMensal() {
     String(currentYear - index),
   )
 
-  async function loadReport(nextFilters = { month, year, sortBy }) {
+  async function loadReport(nextFilters = { month, year, customerId, sortBy }) {
     setLoading(true)
     setMessage(null)
 
@@ -71,10 +75,14 @@ function RelatorioMensal() {
   useEffect(() => {
     let isActive = true
 
-    getMonthlySalesReport(getDefaultReportFilters())
-      .then((data) => {
+    Promise.all([
+      listCustomers(),
+      getMonthlySalesReport(getDefaultReportFilters()),
+    ])
+      .then(([customerData, reportData]) => {
         if (isActive) {
-          setReport(data)
+          setCustomers(customerData)
+          setReport(reportData)
         }
       })
       .catch((error) => {
@@ -95,7 +103,7 @@ function RelatorioMensal() {
 
   async function handleSubmit(event) {
     event.preventDefault()
-    await loadReport({ month, year, sortBy })
+    await loadReport({ month, year, customerId, sortBy })
   }
 
   const columns = [
@@ -145,6 +153,23 @@ function RelatorioMensal() {
             {yearOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="field" htmlFor="reportCustomer">
+          <span className="field__label">Cliente</span>
+          <select
+            id="reportCustomer"
+            className="field__input"
+            value={customerId}
+            onChange={(event) => setCustomerId(event.target.value)}
+          >
+            <option value="">Todos os clientes</option>
+            {customers.map((customer) => (
+              <option key={customer.id} value={customer.id}>
+                {customer.name}
               </option>
             ))}
           </select>

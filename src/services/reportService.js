@@ -16,15 +16,26 @@ function getReportErrorMessage(error) {
   return error?.message || 'Não foi possível carregar o relatório.'
 }
 
-export async function getMonthlySalesReport({ month, year, sortBy = 'quantity' }) {
+export async function getMonthlySalesReport({
+  month,
+  year,
+  customerId = '',
+  sortBy = 'quantity',
+}) {
   const { startDate, endDate } = getMonthRange({ month, year })
 
-  const { data: sales, error: salesError } = await supabase
+  let salesQuery = supabase
     .from('sales')
     .select('id')
     .eq('status', 'completed')
     .gte('sale_date', startDate)
     .lt('sale_date', endDate)
+
+  if (customerId) {
+    salesQuery = salesQuery.eq('customer_id', customerId)
+  }
+
+  const { data: sales, error: salesError } = await salesQuery
 
   if (salesError) {
     throw new Error(getReportErrorMessage(salesError))

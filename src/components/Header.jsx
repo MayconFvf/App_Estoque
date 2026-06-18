@@ -20,10 +20,12 @@ function Header({ onMenuClick }) {
           aria-label="Abrir menu"
           onClick={onMenuClick}
         >
-          ☰
+          <span />
+          <span />
+          <span />
         </button>
         <div>
-          <p className="header__eyebrow">Sistema web</p>
+          <p className="header__eyebrow">Rosa Fiore Distribuidora</p>
           <h2>Gestão de estoque</h2>
         </div>
       </div>

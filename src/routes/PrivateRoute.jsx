@@ -12,7 +12,7 @@ const allowedRoutesByRole = {
     '/estoque',
     '/relatorio-mensal',
   ],
-  seller: ['/dashboard', '/clientes', '/vendas', '/estoque'],
+  seller: ['/dashboard', '/clientes', '/vendas', '/estoque', '/relatorio-mensal'],
 }
 
 function isRouteAllowed(pathname, role) {

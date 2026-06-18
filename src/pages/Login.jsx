@@ -41,6 +41,14 @@ function Login() {
   return (
     <main className="login-page">
       <section className="login-panel">
+        <div className="login-brand">
+          <img
+            src="/brand/Logo_Login.png"
+            alt="Rosa Fiore Distribuidora"
+            className="login-logo-image"
+          />
+        </div>
+
         <h1>Login</h1>
         <p className="login-panel__subtitle">
           Acesse o sistema de gestão de estoque.
