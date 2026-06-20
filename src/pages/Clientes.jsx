@@ -205,6 +205,10 @@ function Clientes() {
         </Button>
       </div>
 
+      <p className="tip-box">
+        Dica: cadastre o cliente antes de registrar uma venda.
+      </p>
+
       <form className="toolbar" onSubmit={handleSearch}>
         <Input
           label="Buscar por nome"

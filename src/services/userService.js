@@ -74,6 +74,35 @@ export async function createUser({ name, email, password, role }) {
   return data
 }
 
+export async function updateUserPassword({ authUserId, password }) {
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session?.access_token) {
+    throw new Error('Sessão expirada. Faça login novamente.')
+  }
+
+  const { data, error } = await supabase.functions.invoke(
+    'update-user-password',
+    {
+      body: {
+        auth_user_id: authUserId,
+        password,
+      },
+      headers: {
+        Authorization: `Bearer ${session.access_token}`,
+      },
+    },
+  )
+
+  if (error) {
+    throw new Error(await getFunctionErrorMessage(error))
+  }
+
+  return data
+}
+
 export async function updateUser(userId, { name, role, active }) {
   const { data, error } = await supabase
     .from('profiles')

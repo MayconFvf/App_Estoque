@@ -125,6 +125,10 @@ function EntradaEstoque() {
         </div>
       </div>
 
+      <p className="tip-box">
+        Dica: use esta tela quando chegarem novos produtos para o estoque.
+      </p>
+
       {message && (
         <p className={`form-message form-message--${message.type}`}>
           {message.text}

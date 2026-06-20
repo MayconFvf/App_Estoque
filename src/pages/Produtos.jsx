@@ -251,6 +251,11 @@ function Produtos() {
         </Button>
       </div>
 
+      <p className="tip-box">
+        Dica: cadastre os produtos com preço e estoque mínimo. A quantidade entra
+        pela tela Entrada de estoque.
+      </p>
+
       <form className="toolbar" onSubmit={handleSearch}>
         <Input
           label="Buscar por nome"

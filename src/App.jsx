@@ -10,6 +10,7 @@ import EntradaEstoque from './pages/EntradaEstoque'
 import Vendas from './pages/Vendas'
 import Estoque from './pages/Estoque'
 import RelatorioMensal from './pages/RelatorioMensal'
+import Ajuda from './pages/Ajuda'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/vendas" element={<Vendas />} />
             <Route path="/estoque" element={<Estoque />} />
             <Route path="/relatorio-mensal" element={<RelatorioMensal />} />
+            <Route path="/ajuda" element={<Ajuda />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/dashboard" replace />} />

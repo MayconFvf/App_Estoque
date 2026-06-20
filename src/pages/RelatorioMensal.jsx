@@ -125,6 +125,10 @@ function RelatorioMensal() {
         </div>
       </div>
 
+      <p className="tip-box">
+        Dica: escolha o mês e o ano para ver quais produtos foram mais vendidos.
+      </p>
+
       <form className="toolbar toolbar--report" onSubmit={handleSubmit}>
         <label className="field" htmlFor="reportMonth">
           <span className="field__label">Mês</span>

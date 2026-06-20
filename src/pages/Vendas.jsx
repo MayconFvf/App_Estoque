@@ -326,6 +326,11 @@ function Vendas() {
         </div>
       </div>
 
+      <p className="tip-box">
+        Dica: escolha o cliente, adicione os produtos vendidos e confira o total
+        antes de finalizar.
+      </p>
+
       {message && (
         <p className={`form-message form-message--${message.type}`}>
           {message.text}

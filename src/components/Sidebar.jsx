@@ -14,6 +14,7 @@ const menuItems = [
     path: '/relatorio-mensal',
     roles: ['admin', 'seller'],
   },
+  { label: 'Ajuda', path: '/ajuda', roles: ['admin', 'seller'] },
 ]
 
 function Sidebar({ isOpen = false, onClose }) {

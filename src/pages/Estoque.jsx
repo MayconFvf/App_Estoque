@@ -116,6 +116,10 @@ function Estoque() {
         </div>
       </div>
 
+      <p className="tip-box">
+        Dica: produtos com estoque baixo precisam de atenção para reposição.
+      </p>
+
       <form className="toolbar toolbar--stock" onSubmit={handleSearch}>
         <Input
           label="Buscar por nome"
