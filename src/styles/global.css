@@ -46,15 +46,18 @@ html {
 }
 
 html,
-body {
+body,
+#root {
   background: var(--bg);
   color: var(--text);
+  color-scheme: light;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--bg);
   overflow-x: hidden;
 }
 
@@ -63,6 +66,7 @@ input,
 select,
 textarea {
   font: inherit;
+  color: var(--text);
   color-scheme: light;
 }
 
@@ -71,6 +75,18 @@ select,
 textarea {
   background-color: #fffdfc;
   color: var(--text);
+  border-color: var(--border);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--primary-dark);
+  color-scheme: light;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--text);
+  box-shadow: 0 0 0 1000px #fffdfc inset;
 }
 
 a {
